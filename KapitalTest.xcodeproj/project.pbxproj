@@ -1,0 +1,736 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		61F07706F354C06EF7CA242E /* Pods_KapitalTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D454B8142021CED99AF40ADF /* Pods_KapitalTestTests.framework */; };
+		7FF4A756BC1CD65E69AF5844 /* Pods_KapitalTest_KapitalTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A670C46D34E942EFA539E320 /* Pods_KapitalTest_KapitalTestUITests.framework */; };
+		8C4CD8F3B51FAAB01E56C5C7 /* Pods_KapitalTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295A17BDD131DE27C14CBE28 /* Pods_KapitalTest.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		49A27AF12FDCC53300059FDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49A27AD92FDCC53200059FDD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49A27AE02FDCC53200059FDD;
+			remoteInfo = KapitalTest;
+		};
+		49A27AFB2FDCC53300059FDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49A27AD92FDCC53200059FDD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49A27AE02FDCC53200059FDD;
+			remoteInfo = KapitalTest;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		295A17BDD131DE27C14CBE28 /* Pods_KapitalTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KapitalTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		374AB1E14B1A3AA067187B8A /* Pods-KapitalTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KapitalTestTests.release.xcconfig"; path = "Target Support Files/Pods-KapitalTestTests/Pods-KapitalTestTests.release.xcconfig"; sourceTree = "<group>"; };
+		42A7F14BFCDD65187777922F /* Pods-KapitalTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KapitalTest.debug.xcconfig"; path = "Target Support Files/Pods-KapitalTest/Pods-KapitalTest.debug.xcconfig"; sourceTree = "<group>"; };
+		49A27AE12FDCC53200059FDD /* KapitalTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KapitalTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49A27AF02FDCC53300059FDD /* KapitalTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KapitalTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		49A27AFA2FDCC53300059FDD /* KapitalTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KapitalTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		92408CBA01C6C2713421A640 /* Pods-KapitalTest-KapitalTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KapitalTest-KapitalTestUITests.release.xcconfig"; path = "Target Support Files/Pods-KapitalTest-KapitalTestUITests/Pods-KapitalTest-KapitalTestUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A670C46D34E942EFA539E320 /* Pods_KapitalTest_KapitalTestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KapitalTest_KapitalTestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D454B8142021CED99AF40ADF /* Pods_KapitalTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KapitalTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE910E5CCE14FA730CCF4A37 /* Pods-KapitalTest-KapitalTestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KapitalTest-KapitalTestUITests.debug.xcconfig"; path = "Target Support Files/Pods-KapitalTest-KapitalTestUITests/Pods-KapitalTest-KapitalTestUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DF76D0F732346CA90F40601E /* Pods-KapitalTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KapitalTestTests.debug.xcconfig"; path = "Target Support Files/Pods-KapitalTestTests/Pods-KapitalTestTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F676E99741D627368ECB2E40 /* Pods-KapitalTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KapitalTest.release.xcconfig"; path = "Target Support Files/Pods-KapitalTest/Pods-KapitalTest.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		49A27AE32FDCC53200059FDD /* KapitalTest */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = KapitalTest;
+			sourceTree = "<group>";
+		};
+		49A27AF32FDCC53300059FDD /* KapitalTestTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = KapitalTestTests;
+			sourceTree = "<group>";
+		};
+		49A27AFD2FDCC53300059FDD /* KapitalTestUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = KapitalTestUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		49A27ADE2FDCC53200059FDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C4CD8F3B51FAAB01E56C5C7 /* Pods_KapitalTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49A27AED2FDCC53300059FDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61F07706F354C06EF7CA242E /* Pods_KapitalTestTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49A27AF72FDCC53300059FDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FF4A756BC1CD65E69AF5844 /* Pods_KapitalTest_KapitalTestUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		49A27AD82FDCC53200059FDD = {
+			isa = PBXGroup;
+			children = (
+				49A27AE32FDCC53200059FDD /* KapitalTest */,
+				49A27AF32FDCC53300059FDD /* KapitalTestTests */,
+				49A27AFD2FDCC53300059FDD /* KapitalTestUITests */,
+				49A27AE22FDCC53200059FDD /* Products */,
+				591B004DF54AFD0FB7E33B85 /* Pods */,
+				E5D07BAB6EECC4ABBA7540F2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		49A27AE22FDCC53200059FDD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				49A27AE12FDCC53200059FDD /* KapitalTest.app */,
+				49A27AF02FDCC53300059FDD /* KapitalTestTests.xctest */,
+				49A27AFA2FDCC53300059FDD /* KapitalTestUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		591B004DF54AFD0FB7E33B85 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				42A7F14BFCDD65187777922F /* Pods-KapitalTest.debug.xcconfig */,
+				F676E99741D627368ECB2E40 /* Pods-KapitalTest.release.xcconfig */,
+				DE910E5CCE14FA730CCF4A37 /* Pods-KapitalTest-KapitalTestUITests.debug.xcconfig */,
+				92408CBA01C6C2713421A640 /* Pods-KapitalTest-KapitalTestUITests.release.xcconfig */,
+				DF76D0F732346CA90F40601E /* Pods-KapitalTestTests.debug.xcconfig */,
+				374AB1E14B1A3AA067187B8A /* Pods-KapitalTestTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E5D07BAB6EECC4ABBA7540F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				295A17BDD131DE27C14CBE28 /* Pods_KapitalTest.framework */,
+				A670C46D34E942EFA539E320 /* Pods_KapitalTest_KapitalTestUITests.framework */,
+				D454B8142021CED99AF40ADF /* Pods_KapitalTestTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		49A27AE02FDCC53200059FDD /* KapitalTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49A27B042FDCC53300059FDD /* Build configuration list for PBXNativeTarget "KapitalTest" */;
+			buildPhases = (
+				5C2CC3129DBA91AA68718056 /* [CP] Check Pods Manifest.lock */,
+				49A27ADD2FDCC53200059FDD /* Sources */,
+				49A27ADE2FDCC53200059FDD /* Frameworks */,
+				49A27ADF2FDCC53200059FDD /* Resources */,
+				5CE45AE2513D9C07662B97FF /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				49A27AE32FDCC53200059FDD /* KapitalTest */,
+			);
+			name = KapitalTest;
+			productName = KapitalTest;
+			productReference = 49A27AE12FDCC53200059FDD /* KapitalTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		49A27AEF2FDCC53300059FDD /* KapitalTestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49A27B072FDCC53300059FDD /* Build configuration list for PBXNativeTarget "KapitalTestTests" */;
+			buildPhases = (
+				F1B6F51CB6D1688C1C158EA7 /* [CP] Check Pods Manifest.lock */,
+				49A27AEC2FDCC53300059FDD /* Sources */,
+				49A27AED2FDCC53300059FDD /* Frameworks */,
+				49A27AEE2FDCC53300059FDD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49A27AF22FDCC53300059FDD /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				49A27AF32FDCC53300059FDD /* KapitalTestTests */,
+			);
+			name = KapitalTestTests;
+			productName = KapitalTestTests;
+			productReference = 49A27AF02FDCC53300059FDD /* KapitalTestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		49A27AF92FDCC53300059FDD /* KapitalTestUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49A27B0A2FDCC53300059FDD /* Build configuration list for PBXNativeTarget "KapitalTestUITests" */;
+			buildPhases = (
+				8845595EBD8C9C14264E742F /* [CP] Check Pods Manifest.lock */,
+				49A27AF62FDCC53300059FDD /* Sources */,
+				49A27AF72FDCC53300059FDD /* Frameworks */,
+				49A27AF82FDCC53300059FDD /* Resources */,
+				09A3C49B4519386FA01A6605 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49A27AFC2FDCC53300059FDD /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				49A27AFD2FDCC53300059FDD /* KapitalTestUITests */,
+			);
+			name = KapitalTestUITests;
+			productName = KapitalTestUITests;
+			productReference = 49A27AFA2FDCC53300059FDD /* KapitalTestUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		49A27AD92FDCC53200059FDD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2630;
+				LastUpgradeCheck = 2630;
+				TargetAttributes = {
+					49A27AE02FDCC53200059FDD = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					49A27AEF2FDCC53300059FDD = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = 49A27AE02FDCC53200059FDD;
+					};
+					49A27AF92FDCC53300059FDD = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = 49A27AE02FDCC53200059FDD;
+					};
+				};
+			};
+			buildConfigurationList = 49A27ADC2FDCC53200059FDD /* Build configuration list for PBXProject "KapitalTest" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 49A27AD82FDCC53200059FDD;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 49A27AE22FDCC53200059FDD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				49A27AE02FDCC53200059FDD /* KapitalTest */,
+				49A27AEF2FDCC53300059FDD /* KapitalTestTests */,
+				49A27AF92FDCC53300059FDD /* KapitalTestUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		49A27ADF2FDCC53200059FDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49A27AEE2FDCC53300059FDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49A27AF82FDCC53300059FDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09A3C49B4519386FA01A6605 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KapitalTest-KapitalTestUITests/Pods-KapitalTest-KapitalTestUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KapitalTest-KapitalTestUITests/Pods-KapitalTest-KapitalTestUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KapitalTest-KapitalTestUITests/Pods-KapitalTest-KapitalTestUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C2CC3129DBA91AA68718056 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KapitalTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5CE45AE2513D9C07662B97FF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KapitalTest/Pods-KapitalTest-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KapitalTest/Pods-KapitalTest-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KapitalTest/Pods-KapitalTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8845595EBD8C9C14264E742F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KapitalTest-KapitalTestUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1B6F51CB6D1688C1C158EA7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KapitalTestTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		49A27ADD2FDCC53200059FDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49A27AEC2FDCC53300059FDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49A27AF62FDCC53300059FDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		49A27AF22FDCC53300059FDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49A27AE02FDCC53200059FDD /* KapitalTest */;
+			targetProxy = 49A27AF12FDCC53300059FDD /* PBXContainerItemProxy */;
+		};
+		49A27AFC2FDCC53300059FDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49A27AE02FDCC53200059FDD /* KapitalTest */;
+			targetProxy = 49A27AFB2FDCC53300059FDD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		49A27B022FDCC53300059FDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		49A27B032FDCC53300059FDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		49A27B052FDCC53300059FDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42A7F14BFCDD65187777922F /* Pods-KapitalTest.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kapital.KapitalTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		49A27B062FDCC53300059FDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F676E99741D627368ECB2E40 /* Pods-KapitalTest.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kapital.KapitalTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		49A27B082FDCC53300059FDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF76D0F732346CA90F40601E /* Pods-KapitalTestTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kapital.KapitalTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KapitalTest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KapitalTest";
+			};
+			name = Debug;
+		};
+		49A27B092FDCC53300059FDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 374AB1E14B1A3AA067187B8A /* Pods-KapitalTestTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kapital.KapitalTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KapitalTest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KapitalTest";
+			};
+			name = Release;
+		};
+		49A27B0B2FDCC53300059FDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE910E5CCE14FA730CCF4A37 /* Pods-KapitalTest-KapitalTestUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kapital.KapitalTestUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KapitalTest;
+			};
+			name = Debug;
+		};
+		49A27B0C2FDCC53300059FDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92408CBA01C6C2713421A640 /* Pods-KapitalTest-KapitalTestUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kapital.KapitalTestUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KapitalTest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		49A27ADC2FDCC53200059FDD /* Build configuration list for PBXProject "KapitalTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49A27B022FDCC53300059FDD /* Debug */,
+				49A27B032FDCC53300059FDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49A27B042FDCC53300059FDD /* Build configuration list for PBXNativeTarget "KapitalTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49A27B052FDCC53300059FDD /* Debug */,
+				49A27B062FDCC53300059FDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49A27B072FDCC53300059FDD /* Build configuration list for PBXNativeTarget "KapitalTestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49A27B082FDCC53300059FDD /* Debug */,
+				49A27B092FDCC53300059FDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49A27B0A2FDCC53300059FDD /* Build configuration list for PBXNativeTarget "KapitalTestUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49A27B0B2FDCC53300059FDD /* Debug */,
+				49A27B0C2FDCC53300059FDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 49A27AD92FDCC53200059FDD /* Project object */;
+}

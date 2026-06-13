@@ -1,0 +1,16 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'LocalStorageInterface' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for LocalStorageInterface
+
+  target 'LocalStorageInterfaceTests' do
+    # Pods for testing
+  end
+
+  pod 'LocalStorage', :path => '../service/LocalStorage'
+
+end
