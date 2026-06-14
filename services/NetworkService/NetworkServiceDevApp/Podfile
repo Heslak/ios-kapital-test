@@ -1,14 +1,11 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '16.0'
 
-target 'LocalStorageService' do
+target 'NetworkServiceDevApp' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for LocalStorageService
-
-  target 'LocalStorageServiceTests' do
-    # Pods for testing
-  end
+  # Pods for NetworkServiceDevApp
+  pod 'NetworkService', path: '../../NetworkService', :testspecs => ['NetworkServiceTests']	
 
 end

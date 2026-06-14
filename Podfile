@@ -2,8 +2,8 @@
 platform :ios, '16.0'
 
 def services
-  pod 'LocalStorageService', :path => 'services/LocalStorageService'
-  pod 'NetworkService', :path => 'services/NetworkService'
+  pod 'LocalStorageService', :path => 'services/LocalStorageService', :testspecs => ['LocalStorageServiceTests']
+  pod 'NetworkService', :path => 'services/NetworkService', :testspecs => ['NetworkServiceTests']
 end
 
 target 'KapitalTest' do
