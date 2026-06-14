@@ -5,59 +5,50 @@
 //  Created by Sergio Acosta on 12/06/26.
 //
 
+import Foundation
 import SwiftUI
+import Combine
+import NetworkService
 
-@Observable
-class AppCoordinator {
+final class AppCoordinator: ObservableObject {
+    private let networkService: NetworkServiceInterface    
+    @Published var path = NavigationPath()
     
-    var path = NavigationPath()
-       
-       // Manages sheet presentation
-       var sheetDestination: AppRoute?
-       
-       // Manages full-screen cover presentation
-       var coverDestination: AppRoute?
-       
-       // MARK: - Navigation Actions
-       
-       func push(_ route: AppRoute) {
-           path.append(route)
-       }
-       
-       func pop() {
-           guard !path.isEmpty else { return }
-           path.removeLast()
-       }
-       
-       func popToRoot() {
-           path = NavigationPath()
-       }
-       
-       func presentSheet(_ route: AppRoute) {
-           sheetDestination = route
-       }
-       
-       func dismissSheet() {
-           sheetDestination = nil
-       }
-       
-       func presentCover(_ route: AppRoute) {
-           coverDestination = route
-       }
-       
-       func dismissCover() {
-           coverDestination = nil
-       }
-       
-       // MARK: - View Factory
-       // Centralizes view generation and dependency injection
-       @ViewBuilder
-       func buildView(for route: AppRoute) -> some View {
-           switch route {
-           case .home:
-               HomeView(coordinator: self)
-           case .detail(let item):
-               ContentView()
-           }
-       }
+    init(
+        networkService: NetworkServiceInterface = NetworkFactory.makeNetworkService(),
+        path: NavigationPath = NavigationPath(),
+    ) {
+        self.path = path
+        self.networkService = networkService
+    }
+    
+    // MARK: - Navigation Actions
+    
+    func push(_ route: AppRoute) {
+        path.append(route)
+    }
+    
+    func pop() {
+        guard !path.isEmpty else { return }
+        path.removeLast()
+    }
+    
+    func popToRoot() {
+        path = NavigationPath()
+    }
+    
+    // MARK: - View Factory
+    // Centralizes view generation and dependency injection
+    @ViewBuilder
+    func buildView(for route: AppRoute) -> some View {
+        switch route {
+        case .home:
+            HomeViewBuilder.makeHomeScreen(
+                networkClient: networkService,
+                coordinator: self
+            )
+        case .detail(let item):
+            EmptyView()
+        }
+    }
 }

@@ -1,6 +1,6 @@
 //
-//  NetworkServiceInterface.swift
-//  NetworkServiceInterface
+//  LocalStorageService.swift
+//  LocalStorageService
 //
 //  Created by Sergio Acosta on 12/06/26.
 //
