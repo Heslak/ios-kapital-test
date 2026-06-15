@@ -322,5 +322,3 @@ SOFTWARE.
 ```
 
 ---
-
-Made with ❤️ for Kapital
