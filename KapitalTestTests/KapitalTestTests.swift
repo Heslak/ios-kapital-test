@@ -129,6 +129,9 @@ final class KapitalTestTests: XCTestCase {
         
         await viewModel.fetchCharacter()
         
+        // Give any background tasks time to complete
+        try? await Task.sleep(nanoseconds: 100_000_000)
+        
         XCTAssertEqual(viewModel.state, .loaded)
         XCTAssertEqual(viewModel.character?.id, 117)
         XCTAssertEqual(useCase.requestedIds, [117])
@@ -156,6 +159,7 @@ final class KapitalTestTests: XCTestCase {
         )
         
         await viewModel.fetchCharacter()
+        try? await Task.sleep(nanoseconds: 100_000_000)
         viewModel.toggleFavorite()
         
         XCTAssertEqual(viewModel.character?.isFavorite, true)
@@ -177,7 +181,7 @@ final class KapitalTestTests: XCTestCase {
         XCTAssertEqual(viewModel.character?.isFavorite, false)
     }
     
-    func testFavoriteCharactersFetchLoadsCharactersAndSetsLoadedState() {
+    func testFavoriteCharactersFetchLoadsCharactersAndSetsLoadedState() async {
         let characters = [
             CharacterInfo.makeMock(id: 1, name: "Achilles", isFavorite: true),
             CharacterInfo.makeMock(id: 2, name: "Hercules", isFavorite: true)
@@ -186,22 +190,24 @@ final class KapitalTestTests: XCTestCase {
         let viewModel = FavoriteCharactersViewModel(fetchFavoriteCharactersUseCase: useCase)
         
         viewModel.fetchFavoriteCharacters()
+        try? await Task.sleep(nanoseconds: 100_000_000)
         
         XCTAssertEqual(viewModel.state, .loaded)
         XCTAssertEqual(viewModel.characters.map(\.id), [1, 2])
     }
     
-    func testFavoriteCharactersFetchSetsErrorStateWhenUseCaseFails() {
+    func testFavoriteCharactersFetchSetsErrorStateWhenUseCaseFails() async {
         let useCase = FetchFavoriteCharactersUseCaseSpy(fetchResult: .failure(TestError.expected))
         let viewModel = FavoriteCharactersViewModel(fetchFavoriteCharactersUseCase: useCase)
         
         viewModel.fetchFavoriteCharacters()
+        try? await Task.sleep(nanoseconds: 100_000_000)
         
         XCTAssertEqual(viewModel.state, .error)
         XCTAssertTrue(viewModel.characters.isEmpty)
     }
     
-    func testFavoriteCharactersToggleFavoriteRemovesCharacterAndRefreshesList() {
+    func testFavoriteCharactersToggleFavoriteRemovesCharacterAndRefreshesList() async {
         let character = CharacterInfo.makeMock(id: 117, name: "Pegasus", isFavorite: true)
         let useCase = FetchFavoriteCharactersUseCaseSpy(
             fetchResults: [
@@ -212,20 +218,23 @@ final class KapitalTestTests: XCTestCase {
         let viewModel = FavoriteCharactersViewModel(fetchFavoriteCharactersUseCase: useCase)
         
         viewModel.fetchFavoriteCharacters()
+        try? await Task.sleep(nanoseconds: 100_000_000)
         viewModel.toggleFavorite(for: character)
+        try? await Task.sleep(nanoseconds: 100_000_000)
         
         XCTAssertTrue(viewModel.characters.isEmpty)
         XCTAssertEqual(useCase.favoriteUpdates, [.init(id: 117, isFavorite: false)])
         XCTAssertEqual(useCase.fetchCallCount, 2)
     }
     
-    func testFavoriteCharactersToggleFavoriteRestoresCharactersWhenPersistenceFails() {
+    func testFavoriteCharactersToggleFavoriteRestoresCharactersWhenPersistenceFails() async {
         let character = CharacterInfo.makeMock(id: 117, name: "Pegasus", isFavorite: true)
         let useCase = FetchFavoriteCharactersUseCaseSpy(fetchResult: .success([character]))
         useCase.favoriteError = TestError.expected
         let viewModel = FavoriteCharactersViewModel(fetchFavoriteCharactersUseCase: useCase)
         
         viewModel.fetchFavoriteCharacters()
+        try? await Task.sleep(nanoseconds: 100_000_000)
         viewModel.toggleFavorite(for: character)
         
         XCTAssertEqual(viewModel.characters.map(\.id), [117])
