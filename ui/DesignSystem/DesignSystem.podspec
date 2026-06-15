@@ -24,7 +24,9 @@ Pod::Spec.new do |spec|
     'DesignSystemResources' => [
       "Sources/**/*.lproj/*.{strings,stringsdict}",
       "Sources/**/*.{json}",
-      "Sources/**/*.xcassets"
+      "Sources/**/*.xcassets",
+      "Docs/**/*.docc",
+      "Docs/**/*.docc/**/*"
     ]
   }
 
