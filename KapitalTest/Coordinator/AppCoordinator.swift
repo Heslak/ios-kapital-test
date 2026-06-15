@@ -71,6 +71,7 @@ final class AppCoordinator: CoordinatorProtocol {
     
     /// Builds the SwiftUI screen for a route using the ViewFactory.
     /// - Parameter route: Route requested by navigation.
+    @MainActor
     @ViewBuilder
     func buildView(for route: AppRoute) -> some View {
         switch route {
