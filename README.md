@@ -4,7 +4,6 @@
 [![iOS](https://img.shields.io/badge/iOS-16.0+-blue.svg)](https://developer.apple.com/ios/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![CocoaPods](https://img.shields.io/badge/CocoaPods-Compatible-red.svg)](https://cocoapods.org)
-[![Build & Tests](https://github.com/Heslak/ios-kapita-test/actions/workflows/ios-build.yml/badge.svg)](https://github.com/Heslak/ios-kapita-test/actions)
 
 A native iOS application built with SwiftUI that displays Disney characters from the [Disney API](https://disneyapi.dev/). This project was developed as a technical challenge for an iOS Developer position.
 
