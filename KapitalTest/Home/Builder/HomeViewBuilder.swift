@@ -7,15 +7,20 @@
 
 import SwiftUI
 import NetworkService
+import LocalStorageService
 
 struct HomeViewBuilder {
     
     @ViewBuilder
     static func makeHomeScreen(
-        networkClient: NetworkServiceInterface,
+        networkService: NetworkServiceInterface,
+        localStorageService: LocalStorageServiceInterface,
         coordinator: AppCoordinator
     ) -> some View {
-        let repository = HomeRepository(networkService: networkClient)
+        let repository = HomeRepository(
+            networkService: networkService,
+            localStorageService: localStorageService
+        )
         let useCase = FetchUsersUseCase(repository: repository)
         let viewModel = HomeViewModel(fetchUsersUseCase: useCase)
         

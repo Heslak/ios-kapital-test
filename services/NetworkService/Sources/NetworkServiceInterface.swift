@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NetworkFactory {
+public struct NetworkServiceFactory {
     public static func makeNetworkService() -> NetworkServiceInterface {
         return NetworkService()
     }

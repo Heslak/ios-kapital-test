@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import LocalStorageService
 
-struct CharactersList: Decodable {
+struct CharactersList: Decodable, LocalStorableCharactersList {
     let info: ListInfo
     let data: [CharacterInfo]
 }
 
-struct CharacterInfo: Decodable {
+struct CharacterInfo: Decodable, LocalStorableCharacterInfo {
     let id: Int
     let films: [String]
     let shortFilms: [String]
@@ -24,6 +25,35 @@ struct CharacterInfo: Decodable {
     let name: String
     let imageUrl: String?
     let url: String
+    let isFavorite: Bool
+    
+    init(
+        id: Int,
+        films: [String],
+        shortFilms: [String],
+        tvShows: [String],
+        videoGames: [String],
+        parkAttractions: [String],
+        allies: [String],
+        enemies: [String],
+        name: String,
+        imageUrl: String?,
+        url: String,
+        isFavorite: Bool = false
+    ) {
+        self.id = id
+        self.films = films
+        self.shortFilms = shortFilms
+        self.tvShows = tvShows
+        self.videoGames = videoGames
+        self.parkAttractions = parkAttractions
+        self.allies = allies
+        self.enemies = enemies
+        self.name = name
+        self.imageUrl = imageUrl
+        self.url = url
+        self.isFavorite = isFavorite
+    }
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -38,9 +68,26 @@ struct CharacterInfo: Decodable {
         case imageUrl
         case url
     }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.id = try container.decode(Int.self, forKey: .id)
+        self.films = try container.decode([String].self, forKey: .films)
+        self.shortFilms = try container.decode([String].self, forKey: .shortFilms)
+        self.tvShows = try container.decode([String].self, forKey: .tvShows)
+        self.videoGames = try container.decode([String].self, forKey: .videoGames)
+        self.parkAttractions = try container.decode([String].self, forKey: .parkAttractions)
+        self.allies = try container.decode([String].self, forKey: .allies)
+        self.enemies = try container.decode([String].self, forKey: .enemies)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl)
+        self.url = try container.decode(String.self, forKey: .url)
+        self.isFavorite = false
+    }
 }
 
-struct ListInfo: Decodable {
+struct ListInfo: Decodable, LocalStorableListInfo {
     let count: Int
     let totalPages: Int
     let previousPage: String?

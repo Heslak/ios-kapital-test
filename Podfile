@@ -6,6 +6,10 @@ def services
   pod 'NetworkService', :path => 'services/NetworkService', :testspecs => ['NetworkServiceTests']
 end
 
+def ui
+  pod 'DesignSystem', :path => 'ui/DesignSystem'
+end
+
 target 'KapitalTest' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
@@ -13,6 +17,7 @@ target 'KapitalTest' do
   # Pods for KapitalTest
 
   services
+  ui
   
   target 'KapitalTestTests' do
     inherit! :search_paths

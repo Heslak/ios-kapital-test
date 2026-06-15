@@ -39,6 +39,8 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		491E9C532FDF31E000F96B56 /* LocalStorageServiceDevApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = LocalStorageServiceDevApp;
 			sourceTree = "<group>";
 		};
@@ -245,13 +247,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LocalStorageServiceDevApp/Pods-LocalStorageServiceDevApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LocalStorageServiceDevApp/Pods-LocalStorageServiceDevApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

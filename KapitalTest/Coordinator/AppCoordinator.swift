@@ -9,17 +9,21 @@ import Foundation
 import SwiftUI
 import Combine
 import NetworkService
+import LocalStorageService
 
 final class AppCoordinator: ObservableObject {
-    private let networkService: NetworkServiceInterface    
+    private let networkService: NetworkServiceInterface
+    private let localStorageService: LocalStorageServiceInterface
     @Published var path = NavigationPath()
     
     init(
-        networkService: NetworkServiceInterface = NetworkFactory.makeNetworkService(),
+        networkService: NetworkServiceInterface = NetworkServiceFactory.makeNetworkService(),
+        localStorageService: LocalStorageServiceInterface = LocalStorageServiceFactory.makeLocalStorageService(),
         path: NavigationPath = NavigationPath(),
     ) {
         self.path = path
         self.networkService = networkService
+        self.localStorageService = localStorageService
     }
     
     // MARK: - Navigation Actions
@@ -44,7 +48,8 @@ final class AppCoordinator: ObservableObject {
         switch route {
         case .home:
             HomeViewBuilder.makeHomeScreen(
-                networkClient: networkService,
+                networkService: networkService,
+                localStorageService: localStorageService,
                 coordinator: self
             )
         case .detail(let item):
