@@ -49,6 +49,7 @@ final class AppViewFactory: ViewFactoryProtocol {
     }
     
     /// Creates the main tab screen with Home and Favorites tabs.
+    @MainActor
     @ViewBuilder
     func makeHomeScreen(coordinator: AppCoordinator) -> some View {
         MainTabViewBuilder.makeMainTabScreen(
@@ -59,6 +60,7 @@ final class AppViewFactory: ViewFactoryProtocol {
     }
     
     /// Creates the character detail screen for a specific character.
+    @MainActor
     @ViewBuilder
     func makeDetailScreen(characterId: Int, coordinator: AppCoordinator) -> some View {
         CharacterDetailViewBuilder.makeCharacterDetailScreen(

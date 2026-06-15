@@ -18,6 +18,7 @@ struct MainTabViewBuilder {
     ///   - networkService: Service passed to tab children that need remote synchronization.
     ///   - localStorageService: Service passed to tab children that need local persistence.
     ///   - coordinator: Coordinator shared by tab children for navigation.
+    @MainActor
     @ViewBuilder
     static func makeMainTabScreen(
         networkService: NetworkServiceInterface,
