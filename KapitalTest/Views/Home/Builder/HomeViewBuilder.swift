@@ -18,6 +18,7 @@ struct HomeViewBuilder {
     ///   - networkService: Service used by the repository for remote synchronization.
     ///   - localStorageService: Service used by the repository for local persistence.
     ///   - coordinator: Coordinator used for navigation from Home.
+    @MainActor
     @ViewBuilder
     static func makeHomeScreen(
         networkService: NetworkServiceInterface,

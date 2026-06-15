@@ -19,6 +19,7 @@ struct CharacterDetailViewBuilder {
     ///   - networkService: Service used by the repository for remote synchronization.
     ///   - localStorageService: Service used by the repository for local persistence.
     ///   - coordinator: Coordinator used for navigation from detail.
+    @MainActor
     @ViewBuilder
     static func makeCharacterDetailScreen(
         characterId: Int,

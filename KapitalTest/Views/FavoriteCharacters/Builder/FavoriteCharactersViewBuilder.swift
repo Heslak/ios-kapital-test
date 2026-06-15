@@ -16,6 +16,7 @@ struct FavoriteCharactersViewBuilder {
     /// - Parameters:
     ///   - localStorageService: Service used by the repository for local favorite reads and writes.
     ///   - coordinator: Coordinator used for navigation from favorites.
+    @MainActor
     @ViewBuilder
     static func makeFavoriteCharactersScreen(
         localStorageService: LocalStorageServiceInterface,
