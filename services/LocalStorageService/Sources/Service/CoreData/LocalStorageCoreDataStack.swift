@@ -8,10 +8,16 @@
 import CoreData
 import Foundation
 
+// MARK: - Core Data Stack
+
 final class LocalStorageCoreDataStack {
     private let container: NSPersistentContainer
     private var loadingError: Error?
 
+    /// Builds the persistent container used by the local storage service.
+    /// - Parameters:
+    ///   - storeType: Core Data store type. Tests can inject `NSInMemoryStoreType`.
+    ///   - storeURL: Optional explicit store URL. Defaults to Application Support.
     init(
         storeType: String = NSSQLiteStoreType,
         storeURL: URL? = nil
@@ -36,6 +42,10 @@ final class LocalStorageCoreDataStack {
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
 
+    // MARK: - Context Execution
+    
+    /// Runs a synchronous operation against the view context and rethrows any Core Data error.
+    /// - Parameter operation: Closure that receives the configured managed object context.
     func performAndWait<T>(_ operation: (NSManagedObjectContext) throws -> T) throws -> T {
         if let loadingError {
             throw LocalStorageError.storeUnavailable(loadingError)
@@ -61,6 +71,9 @@ final class LocalStorageCoreDataStack {
         return value
     }
 
+    // MARK: - Store Location
+    
+    /// Returns the default SQLite store location inside Application Support.
     private static func defaultStoreURL() -> URL {
         let fileManager = FileManager.default
         let applicationSupportURL = fileManager.urls(

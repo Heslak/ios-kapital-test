@@ -8,6 +8,8 @@
 import Combine
 import Foundation
 
+// MARK: - Favorite Characters View Model
+
 @MainActor
 final class FavoriteCharactersViewModel: ObservableObject {
     @Published private(set) var state: ViewState = .shouldLoad
@@ -15,10 +17,15 @@ final class FavoriteCharactersViewModel: ObservableObject {
     
     private let fetchFavoriteCharactersUseCase: FetchFavoriteCharactersUseCaseProtocol
     
+    /// Creates the view model with the use case that reads and updates favorites.
+    /// - Parameter fetchFavoriteCharactersUseCase: Use case used for local favorite operations.
     init(fetchFavoriteCharactersUseCase: FetchFavoriteCharactersUseCaseProtocol) {
         self.fetchFavoriteCharactersUseCase = fetchFavoriteCharactersUseCase
     }
     
+    // MARK: - Loading
+    
+    /// Loads all favorite characters from local storage.
     func fetchFavoriteCharacters() {
         state = .loading
         
@@ -30,6 +37,10 @@ final class FavoriteCharactersViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Favorites
+    
+    /// Optimistically toggles a favorite and refreshes the favorite list after persistence.
+    /// - Parameter character: Favorite character selected by the user.
     func toggleFavorite(for character: CharacterInfo) {
         let previousCharacters = characters
         let isFavorite = !character.isFavorite
@@ -50,6 +61,12 @@ final class FavoriteCharactersViewModel: ObservableObject {
         }
     }
     
+    // MARK: - State Mutations
+    
+    /// Updates or removes a character from the visible favorites list.
+    /// - Parameters:
+    ///   - id: Character identifier.
+    ///   - isFavorite: New favorite value. `false` removes the character from favorites.
     private func updateFavorite(
         id: Int,
         isFavorite: Bool

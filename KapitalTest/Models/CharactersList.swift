@@ -8,14 +8,20 @@
 import Foundation
 import LocalStorageService
 
+// MARK: - Characters List Response
+
 struct CharactersList: Decodable, LocalStorableCharactersList {
     let info: ListInfo
     let data: [CharacterInfo]
 }
 
+// MARK: - Character Detail Response
+
 struct CharacterDetail: Decodable {
     let data: CharacterInfo
 }
+
+// MARK: - Character Info
 
 struct CharacterInfo: Decodable, LocalStorableCharacterInfo {
     let id: Int
@@ -31,6 +37,7 @@ struct CharacterInfo: Decodable, LocalStorableCharacterInfo {
     let url: String
     let isFavorite: Bool
     
+    /// Creates a character model from API, local storage or tests.
     init(
         id: Int,
         films: [String],
@@ -59,6 +66,8 @@ struct CharacterInfo: Decodable, LocalStorableCharacterInfo {
         self.isFavorite = isFavorite
     }
     
+    // MARK: - Decoding
+    
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case films
@@ -73,6 +82,8 @@ struct CharacterInfo: Decodable, LocalStorableCharacterInfo {
         case url
     }
     
+    /// Decodes the API payload and initializes remote characters as non-favorites.
+    /// Favorite state is later restored from local storage.
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -90,6 +101,8 @@ struct CharacterInfo: Decodable, LocalStorableCharacterInfo {
         self.isFavorite = false
     }
 }
+
+// MARK: - List Info
 
 struct ListInfo: Decodable, LocalStorableListInfo {
     let count: Int

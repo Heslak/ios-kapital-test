@@ -11,7 +11,6 @@ import DesignSystem
 struct CharacterFavoriteView: View {
     let isFavorite: Bool
     let action: () -> Void
-    @State private var iconScale: CGFloat = 1.0
     
     private var backgrounColor: DSColorStyle.BackgroundStyle {
         return isFavorite ? .favorite : .character
@@ -26,13 +25,13 @@ struct CharacterFavoriteView: View {
     }
     
     var body: some View {
-        Button(action: toggleFavorite) {
+        Button(action: action) {
             buildImage()
+                .padding(DSDimens.spacing_3)
+                .background(backgrounColor.style.color)
+                .clipShape(Circle())
         }
         .buttonStyle(.plain)
-        .padding(DSDimens.spacing_3)
-        .background(backgrounColor.style.color)
-        .clipShape(Circle())
         .accessibilityElement(children: .combine)
         .accessibilityLabel(Text(AppStrings.favoriteAccessibilityLabel))
     }
@@ -45,18 +44,6 @@ struct CharacterFavoriteView: View {
                 width: DSSizeDimens.width_20,
                 height: DSSizeDimens.height_20
             )
-            .scaleEffect(iconScale)
-    }
-    
-    private func toggleFavorite() {
-        
-        iconScale = 0.82
-        
-        withAnimation(.spring(response: 0.24, dampingFraction: 0.7)) {
-            iconScale = 1.0
-        }
-        
-        action()
     }
 }
 

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UIKit
 
 struct DSColorFactory {
     
@@ -14,10 +15,16 @@ struct DSColorFactory {
     let config: DSColorConfiguration = DSThemeColorConfiguration()
     
     func color(for style: DSColorStyle) -> Color {
-        let currentStyle = UIScreen.main.traitCollection.userInterfaceStyle
         let codes = config.color(for: style)
-        return currentStyle == .dark ?
-        codes.dark ?? codes.light :
-        codes.light
+        
+        return Color(
+            uiColor: UIColor { traitCollection in
+                UIColor(
+                    traitCollection.userInterfaceStyle == .dark ?
+                    codes.dark ?? codes.light :
+                    codes.light
+                )
+            }
+        )
     }
 }

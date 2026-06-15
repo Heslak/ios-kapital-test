@@ -8,6 +8,8 @@
 import CoreData
 import Foundation
 
+// MARK: - Character Entity
+
 final class CharacterInfoEntity: NSManagedObject {
     @NSManaged var id: Int64
     @NSManaged var orderIndex: Int64
@@ -27,5 +29,6 @@ final class CharacterInfoEntity: NSManagedObject {
 }
 
 extension CharacterInfoEntity {
+    /// Core Data entity name used by programmatic fetch and insert requests.
     static let entityName = "CharacterInfoEntity"
 }

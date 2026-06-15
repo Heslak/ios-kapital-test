@@ -8,6 +8,8 @@
 import Foundation
 
 // MARK: - HTTP Method
+
+/// Supported HTTP verbs for endpoint configuration.
 enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"

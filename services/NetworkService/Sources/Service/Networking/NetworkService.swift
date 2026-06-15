@@ -11,11 +11,15 @@ import Foundation
 actor NetworkService: NetworkServiceInterface {
     private let session: URLSession
     
+    /// Creates the service with an injectable URLSession for production or tests.
+    /// - Parameter session: Session used to execute and cache requests.
     init(session: URLSession = NetworkService.makeDefaultSession()) {
         self.session = session
     }
     
-    // Static factory method to generate a highly configured URLSession
+    // MARK: - Session
+    
+    /// Builds the default session configuration with timeouts and URLCache capacity.
     private static func makeDefaultSession() -> URLSession {
         let configuration = URLSessionConfiguration.default
         
@@ -39,7 +43,10 @@ actor NetworkService: NetworkServiceInterface {
         return URLSession(configuration: configuration)
     }
     
-    // MARK: - Generic Request Function
+    // MARK: - Request Execution
+    
+    /// Executes a request, returns cached data when available, and decodes the response body.
+    /// - Parameter endpoint: Endpoint that describes how to build the URLRequest.
     func execute<T: Decodable>(_ endpoint: Endpoint) async throws -> T {
         
         let request = try createURLRequest(from: endpoint)
@@ -63,6 +70,10 @@ actor NetworkService: NetworkServiceInterface {
         return try JSONDecoder().decode(T.self, from: data)
     }
     
+    // MARK: - Request Building
+    
+    /// Converts an endpoint into a URLRequest ready for URLSession.
+    /// - Parameter endpoint: Endpoint that provides URL, HTTP method, headers, body and cache policy.
     private func createURLRequest(from endpoint: Endpoint) throws -> URLRequest {
         guard let url = endpoint.url else { throw NetworkError.invalidURL }
         

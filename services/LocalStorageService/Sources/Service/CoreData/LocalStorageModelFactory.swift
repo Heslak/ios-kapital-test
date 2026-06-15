@@ -8,9 +8,12 @@
 import CoreData
 import Foundation
 
+// MARK: - Programmatic Core Data Model
+
 enum LocalStorageModelFactory {
     static let modelName = "LocalStorageModel"
 
+    /// Creates the in-memory model description used by the persistent container.
     static func makeModel() -> NSManagedObjectModel {
         let model = NSManagedObjectModel()
         let charactersListEntity = makeCharactersListEntity()
@@ -23,6 +26,9 @@ enum LocalStorageModelFactory {
         return model
     }
 
+    // MARK: - Entities
+    
+    /// Builds the entity that stores one paginated list snapshot.
     private static func makeCharactersListEntity() -> NSEntityDescription {
         let entity = NSEntityDescription()
         entity.name = CharactersListEntity.entityName
@@ -39,6 +45,7 @@ enum LocalStorageModelFactory {
         return entity
     }
 
+    /// Builds the entity that stores a single character and favorite state.
     private static func makeCharacterInfoEntity() -> NSEntityDescription {
         let entity = NSEntityDescription()
         entity.name = CharacterInfoEntity.entityName
@@ -63,6 +70,12 @@ enum LocalStorageModelFactory {
         return entity
     }
 
+    // MARK: - Relationships
+    
+    /// Connects list pages and characters with inverse relationships.
+    /// - Parameters:
+    ///   - charactersListEntity: Entity that owns the page snapshot.
+    ///   - characterInfoEntity: Entity stored as list content.
     private static func configureRelationships(
         charactersListEntity: NSEntityDescription,
         characterInfoEntity: NSEntityDescription
@@ -90,6 +103,10 @@ enum LocalStorageModelFactory {
         characterInfoEntity.properties.append(listRelationship)
     }
 
+    // MARK: - Attributes
+    
+    /// Creates a required Int64 attribute.
+    /// - Parameter name: Attribute name inside the Core Data model.
     private static func makeIntegerAttribute(named name: String) -> NSAttributeDescription {
         let attribute = NSAttributeDescription()
         attribute.name = name
@@ -99,6 +116,8 @@ enum LocalStorageModelFactory {
         return attribute
     }
 
+    /// Creates a required Bool attribute.
+    /// - Parameter name: Attribute name inside the Core Data model.
     private static func makeBoolAttribute(named name: String) -> NSAttributeDescription {
         let attribute = NSAttributeDescription()
         attribute.name = name
@@ -108,6 +127,10 @@ enum LocalStorageModelFactory {
         return attribute
     }
 
+    /// Creates a string attribute.
+    /// - Parameters:
+    ///   - name: Attribute name inside the Core Data model.
+    ///   - isOptional: Whether Core Data can store a nil value.
     private static func makeStringAttribute(
         named name: String,
         isOptional: Bool = false
@@ -119,6 +142,8 @@ enum LocalStorageModelFactory {
         return attribute
     }
 
+    /// Creates a transformable attribute for `[String]` values.
+    /// - Parameter name: Attribute name inside the Core Data model.
     private static func makeStringArrayAttribute(named name: String) -> NSAttributeDescription {
         let attribute = NSAttributeDescription()
         attribute.name = name
@@ -130,6 +155,8 @@ enum LocalStorageModelFactory {
         return attribute
     }
 
+    /// Creates a required Date attribute.
+    /// - Parameter name: Attribute name inside the Core Data model.
     private static func makeDateAttribute(named name: String) -> NSAttributeDescription {
         let attribute = NSAttributeDescription()
         attribute.name = name

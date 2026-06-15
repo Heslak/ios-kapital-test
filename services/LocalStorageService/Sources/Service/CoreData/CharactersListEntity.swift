@@ -8,6 +8,8 @@
 import CoreData
 import Foundation
 
+// MARK: - Characters List Entity
+
 final class CharactersListEntity: NSManagedObject {
     @NSManaged var page: Int64
     @NSManaged var count: Int64
@@ -19,5 +21,6 @@ final class CharactersListEntity: NSManagedObject {
 }
 
 extension CharactersListEntity {
+    /// Core Data entity name used by programmatic fetch and insert requests.
     static let entityName = "CharactersListEntity"
 }

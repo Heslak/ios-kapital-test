@@ -8,12 +8,16 @@
 import Foundation
 import Combine
 
+// MARK: - View State
+
 enum ViewState: Equatable {
     case shouldLoad
     case loading
     case loaded
     case error
 }
+
+// MARK: - Home View Model
 
 @MainActor
 final class HomeViewModel: ObservableObject {
@@ -23,10 +27,15 @@ final class HomeViewModel: ObservableObject {
     private let fetchUsersUseCase: FetchUsersUseCaseProtocol
     private var currentPage = 1
         
+    /// Creates the view model with the use case that owns offline-first synchronization.
+    /// - Parameter fetchUsersUseCase: Use case used to load pages and update favorites.
     init(fetchUsersUseCase: FetchUsersUseCaseProtocol) {
         self.fetchUsersUseCase = fetchUsersUseCase
     }
     
+    // MARK: - Loading
+    
+    /// Loads the first page and replaces the current list with the streamed result.
     func fetchUsers() async {
         guard state != .loading else { return }
         
@@ -39,6 +48,8 @@ final class HomeViewModel: ObservableObject {
         )
     }
     
+    /// Loads the next page only when the current character is the last visible item.
+    /// - Parameter currentCharacter: Character currently being rendered by the list.
     func loadNextPageIfNeeded(currentCharacter: CharacterInfo) async {
         guard shouldLoadNextPage(currentCharacter: currentCharacter) else {
             return
@@ -56,6 +67,10 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Favorites
+    
+    /// Optimistically toggles a character favorite value and rolls back if persistence fails.
+    /// - Parameter character: Character selected by the user.
     func toggleFavorite(for character: CharacterInfo) {
         let isFavorite = !character.isFavorite
         
@@ -77,6 +92,13 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Page Loading
+    
+    /// Loads one page using a custom merge strategy.
+    /// - Parameters:
+    ///   - page: Page number to load.
+    ///   - onReceive: Closure used to merge each streamed list into the current state.
+    ///   - failureState: State applied when the load fails.
     @discardableResult
     private func loadPage(
         _ page: Int,
@@ -98,20 +120,24 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
+    /// Checks whether the list should request another page.
+    /// - Parameter currentCharacter: Character currently being rendered by the list.
     private func shouldLoadNextPage(currentCharacter: CharacterInfo) -> Bool {
         state == .loaded &&
         currentCharacter.id == charactersList?.data.last?.id &&
         charactersList?.info.nextPage.isEmpty == false
     }
     
-    private func isLastCharacter(_ character: CharacterInfo) -> Bool {
-        character.id == charactersList?.data.last?.id
-    }
+    // MARK: - List Mutations
     
+    /// Replaces the visible list with the latest streamed snapshot.
+    /// - Parameter charactersList: New list to display.
     private func replaceCharactersList(_ charactersList: CharactersList) {
         self.charactersList = charactersList
     }
     
+    /// Appends a new page while replacing any duplicate ids with the incoming version.
+    /// - Parameter nextCharactersList: Page returned by the use case.
     private func appendCharactersList(_ nextCharactersList: CharactersList) {
         guard let charactersList else {
             self.charactersList = nextCharactersList
@@ -129,6 +155,10 @@ final class HomeViewModel: ObservableObject {
         )
     }
     
+    /// Updates a single character favorite flag in the visible list.
+    /// - Parameters:
+    ///   - id: Character identifier.
+    ///   - isFavorite: New favorite value to display.
     private func updateFavorite(
         id: Int,
         isFavorite: Bool

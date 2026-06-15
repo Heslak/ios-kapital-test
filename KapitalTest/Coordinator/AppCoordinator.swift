@@ -11,11 +11,18 @@ import Combine
 import NetworkService
 import LocalStorageService
 
+// MARK: - App Coordinator
+
 final class AppCoordinator: ObservableObject {
     private let networkService: NetworkServiceInterface
     private let localStorageService: LocalStorageServiceInterface
     @Published var path = NavigationPath()
     
+    /// Creates the coordinator with injectable app-wide dependencies.
+    /// - Parameters:
+    ///   - networkService: Service used by repositories to execute remote requests.
+    ///   - localStorageService: Service used by repositories to read and persist local data.
+    ///   - path: Initial navigation path, mainly useful for tests or deep links.
     init(
         networkService: NetworkServiceInterface = NetworkServiceFactory.makeNetworkService(),
         localStorageService: LocalStorageServiceInterface = LocalStorageServiceFactory.makeLocalStorageService(),
@@ -28,21 +35,27 @@ final class AppCoordinator: ObservableObject {
     
     // MARK: - Navigation Actions
     
+    /// Pushes a new route into the navigation stack.
+    /// - Parameter route: Route to display.
     func push(_ route: AppRoute) {
         path.append(route)
     }
     
+    /// Removes the top route from the stack when possible.
     func pop() {
         guard !path.isEmpty else { return }
         path.removeLast()
     }
     
+    /// Clears the stack and returns to the root screen.
     func popToRoot() {
         path = NavigationPath()
     }
     
     // MARK: - View Factory
-    // Centralizes view generation and dependency injection
+    
+    /// Builds the SwiftUI screen for a route and injects the dependencies it needs.
+    /// - Parameter route: Route requested by navigation.
     @ViewBuilder
     func buildView(for route: AppRoute) -> some View {
         switch route {

@@ -9,8 +9,15 @@ import SwiftUI
 import NetworkService
 import LocalStorageService
 
+// MARK: - Home View Builder
+
 struct HomeViewBuilder {
     
+    /// Builds the Home screen dependency graph.
+    /// - Parameters:
+    ///   - networkService: Service used by the repository for remote synchronization.
+    ///   - localStorageService: Service used by the repository for local persistence.
+    ///   - coordinator: Coordinator used for navigation from Home.
     @ViewBuilder
     static func makeHomeScreen(
         networkService: NetworkServiceInterface,

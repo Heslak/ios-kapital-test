@@ -8,13 +8,23 @@
 import CoreData
 import Foundation
 
+// MARK: - Local Storage Service
+
 final class LocalStorageService: LocalStorageServiceInterface {
     private let coreDataStack: LocalStorageCoreDataStack
 
+    /// Creates the service with a configurable Core Data stack.
+    /// - Parameter coreDataStack: Stack used to execute Core Data operations.
     init(coreDataStack: LocalStorageCoreDataStack = LocalStorageCoreDataStack()) {
         self.coreDataStack = coreDataStack
     }
 
+    // MARK: - Characters List
+    
+    /// Saves a paginated list, replacing the page snapshot and preserving stored favorite flags.
+    /// - Parameters:
+    ///   - list: Page payload to persist.
+    ///   - page: Page number used as the list unique key.
     func saveCharactersList<List: LocalStorableCharactersList>(
         _ list: List,
         page: Int
@@ -50,28 +60,10 @@ final class LocalStorageService: LocalStorageServiceInterface {
         }
     }
 
-    func saveCharacter<Character: LocalStorableCharacterInfo>(
-        _ character: Character
-    ) throws {
-        try coreDataStack.performAndWait { context in
-            let entity = try fetchCharacterEntity(
-                id: character.id,
-                context: context
-            )
-            let isFavorite = entity?.isFavorite ?? character.isFavorite
-            
-            _ = try upsertCharacterEntity(
-                from: character,
-                isFavorite: isFavorite,
-                orderIndex: Int(entity?.orderIndex ?? 0),
-                listEntity: entity?.list,
-                context: context
-            )
-            
-            try saveIfNeeded(context)
-        }
-    }
-
+    /// Reads a paginated list and rebuilds it using the caller's concrete model type.
+    /// - Parameters:
+    ///   - type: Concrete list type expected by the app layer.
+    ///   - page: Page number to fetch.
     func getCharactersList<List: LocalStorableCharactersList>(
         _ type: List.Type,
         page: Int
@@ -99,6 +91,36 @@ final class LocalStorageService: LocalStorageServiceInterface {
         }
     }
 
+    // MARK: - Characters
+    
+    /// Saves or updates one character while keeping its existing favorite state when present.
+    /// - Parameter character: Character payload to persist.
+    func saveCharacter<Character: LocalStorableCharacterInfo>(
+        _ character: Character
+    ) throws {
+        try coreDataStack.performAndWait { context in
+            let entity = try fetchCharacterEntity(
+                id: character.id,
+                context: context
+            )
+            let isFavorite = entity?.isFavorite ?? character.isFavorite
+            
+            _ = try upsertCharacterEntity(
+                from: character,
+                isFavorite: isFavorite,
+                orderIndex: Int(entity?.orderIndex ?? 0),
+                listEntity: entity?.list,
+                context: context
+            )
+            
+            try saveIfNeeded(context)
+        }
+    }
+    
+    /// Reads one stored character and rebuilds it using the caller's concrete model type.
+    /// - Parameters:
+    ///   - type: Concrete character type expected by the app layer.
+    ///   - id: Remote character identifier.
     func getCharacter<Character: LocalStorableCharacterInfo>(
         _ type: Character.Type,
         id: Int
@@ -111,6 +133,8 @@ final class LocalStorageService: LocalStorageServiceInterface {
         }
     }
 
+    /// Reads favorite characters ordered by their list position and then by name.
+    /// - Parameter type: Concrete character type expected by the app layer.
     func getFavoriteCharacters<Character: LocalStorableCharacterInfo>(
         _ type: Character.Type
     ) throws -> [Character] {
@@ -130,6 +154,29 @@ final class LocalStorageService: LocalStorageServiceInterface {
         }
     }
 
+    /// Updates the favorite flag for a previously stored character.
+    /// - Parameters:
+    ///   - id: Remote character identifier.
+    ///   - isFavorite: New favorite value to persist.
+    func setCharacterFavorite(
+        id: Int,
+        isFavorite: Bool
+    ) throws {
+        try coreDataStack.performAndWait { context in
+            guard let entity = try fetchCharacterEntity(id: id, context: context) else {
+                throw LocalStorageError.characterNotFound(id: id)
+            }
+            
+            entity.isFavorite = isFavorite
+            entity.updatedAt = Date()
+            try saveIfNeeded(context)
+        }
+    }
+    
+    // MARK: - Deletion
+    
+    /// Deletes a single page snapshot.
+    /// - Parameter page: Page number to remove.
     func deleteCharactersList(page: Int) throws {
         try coreDataStack.performAndWait { context in
             guard let entity = try fetchCharactersListEntity(page: page, context: context) else {
@@ -140,6 +187,7 @@ final class LocalStorageService: LocalStorageServiceInterface {
         }
     }
 
+    /// Deletes every stored page snapshot.
     func deleteAllCharactersLists() throws {
         try coreDataStack.performAndWait { context in
             let request = NSFetchRequest<CharactersListEntity>(
@@ -151,6 +199,15 @@ final class LocalStorageService: LocalStorageServiceInterface {
         }
     }
 
+    // MARK: - Entity Mapping
+    
+    /// Inserts or updates a character entity with the provided storage metadata.
+    /// - Parameters:
+    ///   - character: Domain-facing character payload.
+    ///   - isFavorite: Favorite state to store.
+    ///   - orderIndex: Position inside the paginated list.
+    ///   - listEntity: Parent list entity, if this character belongs to a list page.
+    ///   - context: Context used for the write operation.
     private func upsertCharacterEntity<Character: LocalStorableCharacterInfo>(
         from character: Character,
         isFavorite: Bool,
@@ -184,6 +241,8 @@ final class LocalStorageService: LocalStorageServiceInterface {
         return entity
     }
 
+    /// Inserts a new list entity in the provided context.
+    /// - Parameter context: Context used for the insert operation.
     private func makeCharactersListEntity(
         context: NSManagedObjectContext
     ) throws -> CharactersListEntity {
@@ -194,6 +253,11 @@ final class LocalStorageService: LocalStorageServiceInterface {
         )
     }
 
+    /// Inserts and type-checks a Core Data entity.
+    /// - Parameters:
+    ///   - type: Expected managed object subclass.
+    ///   - entityName: Core Data entity name.
+    ///   - context: Context used for the insert operation.
     private func insertEntity<Entity: NSManagedObject>(
         _ type: Entity.Type,
         entityName: String,
@@ -208,6 +272,10 @@ final class LocalStorageService: LocalStorageServiceInterface {
         return entity
     }
 
+    /// Converts a stored managed object into the caller's concrete character type.
+    /// - Parameters:
+    ///   - entity: Stored character entity.
+    ///   - type: Concrete character type to rebuild.
     private func makeCharacter<Character: LocalStorableCharacterInfo>(
         from entity: CharacterInfoEntity,
         type: Character.Type
@@ -228,21 +296,10 @@ final class LocalStorageService: LocalStorageServiceInterface {
         )
     }
 
-    func setCharacterFavorite(
-        id: Int,
-        isFavorite: Bool
-    ) throws {
-        try coreDataStack.performAndWait { context in
-            guard let entity = try fetchCharacterEntity(id: id, context: context) else {
-                throw LocalStorageError.characterNotFound(id: id)
-            }
-            
-            entity.isFavorite = isFavorite
-            entity.updatedAt = Date()
-            try saveIfNeeded(context)
-        }
-    }
-
+    // MARK: - Fetch Helpers
+    
+    /// Fetches all favorite character ids to preserve favorites during page replacement.
+    /// - Parameter context: Context used for the fetch operation.
     private func fetchFavoriteIds(
         context: NSManagedObjectContext
     ) throws -> Set<Int> {
@@ -255,6 +312,10 @@ final class LocalStorageService: LocalStorageServiceInterface {
         )
     }
 
+    /// Fetches the stored list entity for a page.
+    /// - Parameters:
+    ///   - page: Page number used as unique key.
+    ///   - context: Context used for the fetch operation.
     private func fetchCharactersListEntity(
         page: Int,
         context: NSManagedObjectContext
@@ -267,6 +328,10 @@ final class LocalStorageService: LocalStorageServiceInterface {
         return try context.fetch(request).first
     }
 
+    /// Fetches a stored character entity by remote id.
+    /// - Parameters:
+    ///   - id: Remote character identifier.
+    ///   - context: Context used for the fetch operation.
     private func fetchCharacterEntity(
         id: Int,
         context: NSManagedObjectContext
@@ -279,6 +344,10 @@ final class LocalStorageService: LocalStorageServiceInterface {
         return try context.fetch(request).first
     }
 
+    // MARK: - Persistence
+    
+    /// Saves the context only when it contains pending changes.
+    /// - Parameter context: Context that may need to be saved.
     private func saveIfNeeded(_ context: NSManagedObjectContext) throws {
         guard context.hasChanges else { return }
         try context.save()

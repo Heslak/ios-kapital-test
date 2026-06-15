@@ -7,7 +7,11 @@
 
 import DesignSystem
 
+// MARK: - Character Presentation Helpers
+
 extension CharacterInfo {
+    /// Returns a copy of the character with a new favorite value.
+    /// - Parameter isFavorite: Favorite value to apply to the copy.
     func settingFavorite(_ isFavorite: Bool) -> CharacterInfo {
         CharacterInfo(
             id: id,
@@ -25,6 +29,7 @@ extension CharacterInfo {
         )
     }
     
+    /// Builds the compact tags shown in character list cells.
     func getTags() -> [CharacterTagViewType] {
         var tags: [CharacterTagViewType] = []
         
@@ -36,6 +41,7 @@ extension CharacterInfo {
         return tags
     }
     
+    /// Stable placeholder color derived from the character id.
     var placeholderColor: DSColorStyle.PlaceholderStyle {
         let colors: [DSColorStyle.PlaceholderStyle] = [
             .cyan,
@@ -48,6 +54,7 @@ extension CharacterInfo {
         return colors[abs(self.id - 1) % colors.count]
     }
     
+    /// Total count used by the detail summary card.
     var totalCountStats: Int {
         films.count +
         shortFilms.count +
@@ -56,6 +63,7 @@ extension CharacterInfo {
         parkAttractions.count
     }
     
+    /// Builds the stat items displayed in the detail summary.
     func getStats() -> [CharacterDetailStatModel] {
         return [
             .init(
@@ -85,6 +93,7 @@ extension CharacterInfo {
         ]
     }
     
+    /// Builds the content sections displayed in the character detail screen.
     func getStatsSection() -> [CharacterDetailSectionModel] {
         return [
             .init(

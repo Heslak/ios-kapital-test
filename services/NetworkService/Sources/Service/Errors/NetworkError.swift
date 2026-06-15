@@ -8,6 +8,8 @@
 import Foundation
 
 // MARK: - Network Error
+
+/// Errors produced while building, executing, validating or decoding network requests.
 enum NetworkError: Error {
     case invalidURL
     case serializationFailed

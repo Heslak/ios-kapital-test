@@ -8,6 +8,8 @@
 import Foundation
 import Combine
 
+// MARK: - Character Detail View Model
+
 @MainActor
 final class CharacterDetailViewModel: ObservableObject {
     @Published private(set) var state: ViewState = .shouldLoad
@@ -16,6 +18,10 @@ final class CharacterDetailViewModel: ObservableObject {
     private let characterId: Int
     private let fetchCharacterDetailUseCase: FetchCharacterDetailUseCaseProtocol
     
+    /// Creates the view model for a specific character detail screen.
+    /// - Parameters:
+    ///   - characterId: Character identifier requested by the route.
+    ///   - fetchCharacterDetailUseCase: Use case used to load detail and update favorites.
     init(
         characterId: Int,
         fetchCharacterDetailUseCase: FetchCharacterDetailUseCaseProtocol
@@ -24,6 +30,9 @@ final class CharacterDetailViewModel: ObservableObject {
         self.fetchCharacterDetailUseCase = fetchCharacterDetailUseCase
     }
     
+    // MARK: - Loading
+    
+    /// Loads the character detail using the offline-first stream from the use case.
     func fetchCharacter() async {
         guard state != .loading else { return }
         
@@ -39,6 +48,9 @@ final class CharacterDetailViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Favorites
+    
+    /// Optimistically toggles the current character favorite value and rolls back if persistence fails.
     func toggleFavorite() {
         guard let character else { return }
         
@@ -55,6 +67,10 @@ final class CharacterDetailViewModel: ObservableObject {
         }
     }
     
+    // MARK: - State Mutations
+    
+    /// Updates the visible favorite value without mutating the original character instance.
+    /// - Parameter isFavorite: New favorite value to display.
     private func updateFavorite(_ isFavorite: Bool) {
         character = character?.settingFavorite(isFavorite)
     }
