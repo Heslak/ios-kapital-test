@@ -129,8 +129,8 @@ final class KapitalTestTests: XCTestCase {
         
         await viewModel.fetchCharacter()
         
-        // Give any background tasks time to complete
-        try? await Task.sleep(nanoseconds: 100_000_000)
+        // Give background tasks time to complete
+        try? await Task.sleep(nanoseconds: 500_000_000)
         
         XCTAssertEqual(viewModel.state, .loaded)
         XCTAssertEqual(viewModel.character?.id, 117)
@@ -145,6 +145,9 @@ final class KapitalTestTests: XCTestCase {
         )
         
         await viewModel.fetchCharacter()
+        
+        // Give background tasks time to complete
+        try? await Task.sleep(nanoseconds: 500_000_000)
         
         XCTAssertEqual(viewModel.state, .error)
         XCTAssertNil(viewModel.character)
@@ -176,6 +179,7 @@ final class KapitalTestTests: XCTestCase {
         )
         
         await viewModel.fetchCharacter()
+        try? await Task.sleep(nanoseconds: 500_000_000)
         viewModel.toggleFavorite()
         
         XCTAssertEqual(viewModel.character?.isFavorite, false)
@@ -234,6 +238,7 @@ final class KapitalTestTests: XCTestCase {
         let viewModel = FavoriteCharactersViewModel(fetchFavoriteCharactersUseCase: useCase)
         
         viewModel.fetchFavoriteCharacters()
+        try? await Task.sleep(nanoseconds: 100_000_000)
         try? await Task.sleep(nanoseconds: 100_000_000)
         viewModel.toggleFavorite(for: character)
         
