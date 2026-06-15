@@ -10,7 +10,7 @@ A native iOS application built with SwiftUI that displays Disney characters from
 
 ## 📱 Demo
 
-https://github.com/user-attachments/assets/demo.mov
+<video src="./demo.mp4" width="100%" controls></video>
 
 ## ✨ Features
 
