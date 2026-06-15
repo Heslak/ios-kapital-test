@@ -7,9 +7,40 @@
 
 A native iOS application built with SwiftUI that displays Disney characters from the [Disney API](https://disneyapi.dev/). This project was developed as a technical challenge for an iOS Developer position.
 
-## 📱 Demo
+## 📱 Screenshots
 
-<video src="./demo.mov" width="100%" controls></video>
+<table width="100%">
+  <tr>
+    <td width="33.3%" align="center">
+      <img width="603" height="1311" alt="Simulator Screenshot - iPhone 17 Pro - 2026-06-15 at 12 30 19" src="https://github.com/user-attachments/assets/2ea56221-d5ce-4fe2-8a97-83f53ce8bb76" />
+    </td>
+    <td width="33.3%" align="center">
+      <img width="603" height="1311" alt="Simulator Screenshot - iPhone 17 Pro - 2026-06-15 at 12 30 15" src="https://github.com/user-attachments/assets/1ed7cd8d-e9ac-4a01-9354-c6ff1e87738d" />
+    </td>
+    <td width="33.3%" align="center">
+      <img width="603" height="1311" alt="Simulator Screenshot - iPhone 17 Pro - 2026-06-15 at 12 30 22" src="https://github.com/user-attachments/assets/caf8d843-8c5b-4780-8854-ee05e217713d" />
+    </td>
+  </tr>
+  <tr>
+    <td width="33.3%" align="center">
+      <img width="603" height="1311" alt="Simulator Screenshot - iPhone 17 Pro - 2026-06-15 at 12 30 47" src="https://github.com/user-attachments/assets/93225172-2fdb-4461-8f33-b86c890ab85b" />
+    </td>
+    <td width="33.3%" align="center">
+      <img width="603" height="1311" alt="Simulator Screenshot - iPhone 17 Pro - 2026-06-15 at 12 30 44" src="https://github.com/user-attachments/assets/743ce064-c322-47c3-9f7a-447cce684e76" />
+    </td>
+    <td width="33.3%" align="center">
+      <img width="603" height="1311" alt="Simulator Screenshot - iPhone 17 Pro - 2026-06-15 at 12 30 42" src="https://github.com/user-attachments/assets/cc8f3638-31db-4a46-9709-fefa705b10a4" />
+    </td>
+    <td width="33.3%" align="center">
+      <img width="603" height="1311" alt="Simulator Screenshot - iPhone 17 Pro - 2026-06-15 at 12 30 39" src="https://github.com/user-attachments/assets/defff931-5f11-4df3-9926-2b36f633059a" />
+       </td>
+  </tr>
+  <tr>
+    <td width="33.3%" align="center">
+      <img width="603" height="1311" alt="Simulator Screenshot - iPhone 17 Pro - 2026-06-15 at 12 30 34" src="https://github.com/user-attachments/assets/54e81a36-6d78-4772-b61e-48d4574ba075" /> 
+    </td>
+  </tr>
+</table>
 
 ## ✨ Features
 
@@ -26,26 +57,26 @@ The project follows **Clean Architecture** principles with **MVVM** (Model-View-
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                        Presentation                          │
-│  ┌─────────┐    ┌───────────┐    ┌─────────────────────┐   │
-│  │  View   │───▶│ ViewModel │───▶│     Coordinator     │   │
-│  └─────────┘    └───────────┘    └─────────────────────┘   │
+│                        Presentation                         │
+│  ┌─────────┐    ┌───────────┐    ┌─────────────────────┐    │
+│  │  View   │───▶│ ViewModel │───▶│     Coordinator     │    │
+│  └─────────┘    └───────────┘    └─────────────────────┘    │
 └─────────────────────────────────────────────────────────────┘
                            │
                            ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                         Domain                               │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │                     Use Cases                         │   │
-│  └─────────────────────────────────────────────────────┘   │
+│                         Domain                              │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │                     Use Cases                       │    │
+│  └─────────────────────────────────────────────────────┘    │
 └─────────────────────────────────────────────────────────────┘
                            │
                            ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                          Data                                │
-│  ┌──────────────┐              ┌──────────────────────┐    │
-│  │  Repository  │─────────────▶│  Network / Storage   │    │
-│  └──────────────┘              └──────────────────────┘    │
+│                          Data                               │
+│  ┌──────────────┐              ┌──────────────────────┐     │
+│  │  Repository  │─────────────▶│  Network / Storage   │     │
+│  └──────────────┘              └──────────────────────┘     │
 └─────────────────────────────────────────────────────────────┘
 ```
 
