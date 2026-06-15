@@ -125,8 +125,8 @@ KapitalTest/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Heslak/ios-kapita-test.git
-   cd ios-kapita-test
+   git clone https://github.com/Heslak/ios-kapital-test.git
+   cd ios-kapital-test
    ```
 
 2. **Install dependencies**
@@ -210,15 +210,6 @@ The app is designed with accessibility in mind:
 - **SwiftLint**: Enforces Swift style and conventions
 - **Documentation**: DocC documentation for all modules
 - **MARK Comments**: Code organization with clear sections
-
-## 🔮 Future Improvements
-
-- [ ] Implement search functionality
-- [ ] Add character filtering by category
-- [ ] Implement pull-to-refresh
-- [ ] Add widget extension
-- [ ] Implement deep linking
-- [ ] Add CI/CD pipeline (GitHub Actions)
 
 ## 👤 Author
 
