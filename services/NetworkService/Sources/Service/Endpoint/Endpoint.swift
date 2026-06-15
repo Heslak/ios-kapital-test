@@ -31,8 +31,7 @@ public enum Endpoint {
     
     var method: HTTPMethod {
         switch self {
-        case .fetchList: return .get
-        case .fetchDetail: return .post
+        case .fetchList, .fetchDetail: return .get
         }
     }
     

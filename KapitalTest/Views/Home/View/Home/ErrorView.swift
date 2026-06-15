@@ -14,16 +14,16 @@ struct ErrorView: View {
         
     var body: some View {
         VStack(spacing: DSDimens.spacing_5) {
-            Text("Error")
-                .font(.system(size: 24, weight: .black, design: .rounded))
+            Text(AppStrings.errorTitle)
+                .font(.h2Bold)
                 .foregroundStyle(.ink(.primary))
             
-            Button("Retry") {
+            Button(AppStrings.retryButton) {
                 Task {
                     await action()
                 }
             }
-            .font(.system(size: 17, weight: .bold, design: .rounded))
+            .font(.bodyBold)
             .buttonStyle(.borderedProminent)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

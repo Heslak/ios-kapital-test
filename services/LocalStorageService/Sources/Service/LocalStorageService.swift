@@ -36,7 +36,7 @@ final class LocalStorageService: LocalStorageServiceInterface {
             listEntity.updatedAt = Date()
 
             let characters = try list.data.enumerated().map { index, character in
-                try makeCharacterEntity(
+                try upsertCharacterEntity(
                     from: character,
                     isFavorite: favoriteIds.contains(character.id) || character.isFavorite,
                     orderIndex: index,
@@ -46,6 +46,28 @@ final class LocalStorageService: LocalStorageServiceInterface {
             }
             listEntity.characters = Set(characters)
 
+            try saveIfNeeded(context)
+        }
+    }
+
+    func saveCharacter<Character: LocalStorableCharacterInfo>(
+        _ character: Character
+    ) throws {
+        try coreDataStack.performAndWait { context in
+            let entity = try fetchCharacterEntity(
+                id: character.id,
+                context: context
+            )
+            let isFavorite = entity?.isFavorite ?? character.isFavorite
+            
+            _ = try upsertCharacterEntity(
+                from: character,
+                isFavorite: isFavorite,
+                orderIndex: Int(entity?.orderIndex ?? 0),
+                listEntity: entity?.list,
+                context: context
+            )
+            
             try saveIfNeeded(context)
         }
     }
@@ -89,6 +111,25 @@ final class LocalStorageService: LocalStorageServiceInterface {
         }
     }
 
+    func getFavoriteCharacters<Character: LocalStorableCharacterInfo>(
+        _ type: Character.Type
+    ) throws -> [Character] {
+        try coreDataStack.performAndWait { context in
+            let request = NSFetchRequest<CharacterInfoEntity>(
+                entityName: CharacterInfoEntity.entityName
+            )
+            request.predicate = NSPredicate(format: "isFavorite == YES")
+            request.sortDescriptors = [
+                NSSortDescriptor(key: "orderIndex", ascending: true),
+                NSSortDescriptor(key: "name", ascending: true)
+            ]
+            
+            return try context.fetch(request).map {
+                makeCharacter(from: $0, type: type)
+            }
+        }
+    }
+
     func deleteCharactersList(page: Int) throws {
         try coreDataStack.performAndWait { context in
             guard let entity = try fetchCharactersListEntity(page: page, context: context) else {
@@ -110,14 +151,17 @@ final class LocalStorageService: LocalStorageServiceInterface {
         }
     }
 
-    private func makeCharacterEntity<Character: LocalStorableCharacterInfo>(
+    private func upsertCharacterEntity<Character: LocalStorableCharacterInfo>(
         from character: Character,
         isFavorite: Bool,
         orderIndex: Int,
-        listEntity: CharactersListEntity,
+        listEntity: CharactersListEntity?,
         context: NSManagedObjectContext
     ) throws -> CharacterInfoEntity {
-        let entity = try insertEntity(
+        let entity = try fetchCharacterEntity(
+            id: character.id,
+            context: context
+        ) ?? insertEntity(
             CharacterInfoEntity.self,
             entityName: CharacterInfoEntity.entityName,
             context: context

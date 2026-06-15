@@ -29,6 +29,14 @@ public protocol LocalStorageServiceInterface {
         id: Int
     ) throws -> Character?
 
+    func getFavoriteCharacters<Character: LocalStorableCharacterInfo>(
+        _ type: Character.Type
+    ) throws -> [Character]
+
+    func saveCharacter<Character: LocalStorableCharacterInfo>(
+        _ character: Character
+    ) throws
+
     func setCharacterFavorite(
         id: Int,
         isFavorite: Bool

@@ -34,12 +34,14 @@ struct CharacterListCell: View {
     
     @ViewBuilder
     private func buildBody() -> some View {
-        buildAvatarView()
-        
-        VStack(alignment: .leading, spacing: DSDimens.spacing_3) {
-            buildContentCell()
+        HStack(spacing: DSDimens.spacing_3) {
+            buildAvatarView()
+            
+            VStack(alignment: .leading, spacing: DSDimens.spacing_3) {
+                buildContentCell()
+            }
+            .frame(maxWidth: .infinity)
         }
-        .frame(maxWidth: .infinity)
         
         buildFavoriteView()
         
@@ -52,7 +54,7 @@ struct CharacterListCell: View {
     private func buildAvatarView() -> some View {
         AvatarView(
             imageURL: character.imageUrl,
-            placeholderColor: character.placeholderColor()
+            placeholderColor: character.placeholderColor
         )
     }
     
@@ -86,19 +88,7 @@ struct CharacterListCell: View {
 #if DEBUG
 #Preview {
     CharacterListCell(
-        character: CharacterInfo(
-            id: 1,
-            films: ["Hercules"],
-            shortFilms: [],
-            tvShows: ["Hercules"],
-            videoGames: ["Kingdom Hearts"],
-            parkAttractions: [],
-            allies: [],
-            enemies: [],
-            name: "Achilles",
-            imageUrl: nil,
-            url: ""
-        ),
+        character: .getMockCharacter(),
         favoriteAction: { _ in }
     )
 }

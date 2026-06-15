@@ -47,13 +47,18 @@ final class AppCoordinator: ObservableObject {
     func buildView(for route: AppRoute) -> some View {
         switch route {
         case .home:
-            HomeViewBuilder.makeHomeScreen(
+            MainTabViewBuilder.makeMainTabScreen(
                 networkService: networkService,
                 localStorageService: localStorageService,
                 coordinator: self
             )
-        case .detail(let item):
-            EmptyView()
+        case .detail(let id):
+            CharacterDetailViewBuilder.makeCharacterDetailScreen(
+                characterId: id,
+                networkService: networkService,
+                localStorageService: localStorageService,
+                coordinator: self
+            )
         }
     }
 }

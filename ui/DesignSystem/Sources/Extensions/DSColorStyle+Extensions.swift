@@ -17,15 +17,23 @@ public extension DSColorStyle {
         case favorite
         case placeholder
         case error
+        case film
+        case show
+        case game
+        case attraction
+        case allies
+        case enemies
+        
         public var style: DSColorStyle { .ink(self) }
     }
-    
+        
     enum BackgroundStyle {
         case character
         case standard
         case favorite
         case unSelected
         case placeholder
+        
         public var style: DSColorStyle { .background(self) }
     }
     
@@ -35,11 +43,15 @@ public extension DSColorStyle {
         case pink
         case purple
         case cyan
-        public var style: DSColorStyle { .placeHolder(self) }
+        case blue
+        case orange
+        
+        public var style: DSColorStyle { .placeholder(self) }
     }
     
     enum ShadowStyle {
         case black
+        
         public var style: DSColorStyle { .shadow(self) }
     }
 }

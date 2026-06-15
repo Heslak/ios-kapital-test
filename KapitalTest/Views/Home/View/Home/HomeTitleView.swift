@@ -10,14 +10,17 @@ import DesignSystem
 
 struct HomeTitleView: View {
     
+    let title: String
+    let subtitle: String
+    
     var body: some View {
         VStack(alignment: .leading, spacing: DSDimens.spacing_1) {
-            Text("DISNEY UNIVERSE")
+            Text(title)
                 .font(.h3Bold)
                 .foregroundStyle(.ink(.secondary))
                 .tracking(2)
             
-            Text("Characters")
+            Text(subtitle)
                 .font(.h1Bold)
                 .foregroundStyle(.ink(.primary))
         }
@@ -27,6 +30,9 @@ struct HomeTitleView: View {
 
 #if DEBUG
 #Preview {
-    HomeTitleView()
+    HomeTitleView(
+        title: AppStrings.appEyebrow,
+        subtitle: AppStrings.charactersTitle
+    )
 }
 #endif

@@ -34,7 +34,7 @@ struct CharacterFavoriteView: View {
         .background(backgrounColor.style.color)
         .clipShape(Circle())
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("Favorite")
+        .accessibilityLabel(Text(AppStrings.favoriteAccessibilityLabel))
     }
     
     private func buildImage() -> some View {

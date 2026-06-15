@@ -42,6 +42,7 @@ public enum DSSizeDimens {
     public static let height_92: CGFloat = 92
     public static let height_96: CGFloat = 96
     public static let height_100: CGFloat = 100
+    public static let height_120: CGFloat = 120
     public static let height_128: CGFloat = 128
     public static let height_140: CGFloat = 140
     public static let height_176: CGFloat = 176

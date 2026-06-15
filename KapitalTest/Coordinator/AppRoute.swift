@@ -7,12 +7,12 @@
 
 enum AppRoute: Hashable, Identifiable {
     case home
-    case detail(item: String)
+    case detail(id: Int)
     
     var id: String {
         switch self {
         case .home: return "home"
-        case .detail(let item): return "detail-\(item)"
+        case .detail(let id): return "detail-\(id)"
         }
     }
 }

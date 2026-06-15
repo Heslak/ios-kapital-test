@@ -13,6 +13,10 @@ struct CharactersList: Decodable, LocalStorableCharactersList {
     let data: [CharacterInfo]
 }
 
+struct CharacterDetail: Decodable {
+    let data: CharacterInfo
+}
+
 struct CharacterInfo: Decodable, LocalStorableCharacterInfo {
     let id: Int
     let films: [String]

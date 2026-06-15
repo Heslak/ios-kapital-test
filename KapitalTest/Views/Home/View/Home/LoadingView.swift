@@ -13,8 +13,8 @@ struct LoadingView: View {
         VStack(spacing: DSDimens.spacing_5) {
             ProgressView()
             
-            Text("Loading")
-                .font(.system(size: 18, weight: .bold, design: .rounded))
+            Text(AppStrings.loadingTitle)
+                .font(.h3Bold)
                 .foregroundStyle(.ink(.secondary))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
