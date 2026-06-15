@@ -16,6 +16,7 @@ final class FavoriteCharactersViewModel: ObservableObject {
     @Published private(set) var characters: [CharacterInfo] = []
     
     private let fetchFavoriteCharactersUseCase: FetchFavoriteCharactersUseCaseProtocol
+    private var fetchTask: Task<Void, Never>?
     
     /// Creates the view model with the use case that reads and updates favorites.
     /// - Parameter fetchFavoriteCharactersUseCase: Use case used for local favorite operations.
@@ -27,14 +28,30 @@ final class FavoriteCharactersViewModel: ObservableObject {
     
     /// Loads all favorite characters from local storage.
     func fetchFavoriteCharacters() {
+        // Cancel any previous fetch task
+        fetchTask?.cancel()
+        
         state = .loading
         
-        do {
-            characters = try fetchFavoriteCharactersUseCase.fetchFavoriteCharacters()
-            state = .loaded
-        } catch {
-            state = .error
+        fetchTask = Task {
+            do {
+                characters = try fetchFavoriteCharactersUseCase.fetchFavoriteCharacters()
+                
+                if !Task.isCancelled {
+                    state = .loaded
+                }
+            } catch {
+                if !Task.isCancelled {
+                    state = .error
+                }
+            }
         }
+    }
+    
+    /// Cancels any in-progress fetch operation.
+    func cancelFetch() {
+        fetchTask?.cancel()
+        fetchTask = nil
     }
     
     // MARK: - Favorites
@@ -76,5 +93,9 @@ final class FavoriteCharactersViewModel: ObservableObject {
             guard isFavorite else { return nil }
             return character.settingFavorite(isFavorite)
         }
+    }
+    
+    deinit {
+        fetchTask?.cancel()
     }
 }

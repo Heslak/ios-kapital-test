@@ -26,6 +26,9 @@ struct HomeView: View {
             .task {
                 await fetchUsers()
             }
+            .onDisappear {
+                viewModel.cancelLoadNextPage()
+            }
     }
     
     @ViewBuilder

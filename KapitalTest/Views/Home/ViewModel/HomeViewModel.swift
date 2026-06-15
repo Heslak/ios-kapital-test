@@ -17,7 +17,8 @@ final class HomeViewModel: ObservableObject {
     @Published var charactersList: CharactersList?
     private let fetchUsersUseCase: FetchUsersUseCaseProtocol
     private var currentPage = 1
-        
+    private var loadPageTask: Task<Void, Never>?
+    
     /// Creates the view model with the use case that owns offline-first synchronization.
     /// - Parameter fetchUsersUseCase: Use case used to load pages and update favorites.
     init(fetchUsersUseCase: FetchUsersUseCaseProtocol) {
@@ -56,6 +57,12 @@ final class HomeViewModel: ObservableObject {
         if didLoadPage {
             currentPage = nextPage
         }
+    }
+    
+    /// Cancels any in-progress page loading operation.
+    func cancelLoadNextPage() {
+        loadPageTask?.cancel()
+        loadPageTask = nil
     }
     
     // MARK: - Favorites
@@ -100,13 +107,22 @@ final class HomeViewModel: ObservableObject {
         
         do {
             for try await charactersList in fetchUsersUseCase.fetchUsers(page: page) {
+                // Check if task was cancelled before updating state
+                if Task.isCancelled { return false }
                 onReceive(charactersList)
             }
             
-            state = .loaded
-            return true
+            // Only update loaded state if task wasn't cancelled
+            if !Task.isCancelled {
+                state = .loaded
+                return true
+            }
+            return false
         } catch {
-            state = failureState
+            // Only update error state if task wasn't cancelled
+            if !Task.isCancelled {
+                state = failureState
+            }
             return false
         }
     }
@@ -165,5 +181,9 @@ final class HomeViewModel: ObservableObject {
             info: charactersList.info,
             data: characters
         )
+    }
+    
+    deinit {
+        loadPageTask?.cancel()
     }
 }

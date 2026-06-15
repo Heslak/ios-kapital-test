@@ -1,0 +1,65 @@
+name: iOS Build & Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Xcode version
+        run: sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+        
+      - name: Install CocoaPods
+        run: |
+          gem install cocoapods
+          pod repo update
+        
+      - name: Install dependencies
+        run: pod install --repo-update
+        working-directory: .
+        
+      - name: Build iOS App
+        run: |
+          xcodebuild build \
+            -workspace KapitalTest.xcworkspace \
+            -scheme KapitalTest \
+            -configuration Debug \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath DerivedData \
+            -quiet
+        
+      - name: Run Unit Tests
+        run: |
+          xcodebuild test \
+            -workspace KapitalTest.xcworkspace \
+            -scheme KapitalTestTests \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=latest' \
+            -derivedDataPath DerivedData \
+            -resultBundlePath TestResults.xcresult
+        
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: TestResults.xcresult
+          
+      - name: Check build success
+        if: success()
+        run: echo "✅ Build and tests completed successfully"
+        
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "❌ Build or tests failed"
+          exit 1

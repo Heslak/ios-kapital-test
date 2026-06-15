@@ -17,6 +17,7 @@ final class CharacterDetailViewModel: ObservableObject {
     
     private let characterId: Int
     private let fetchCharacterDetailUseCase: FetchCharacterDetailUseCaseProtocol
+    private var fetchTask: Task<Void, Never>?
     
     /// Creates the view model for a specific character detail screen.
     /// - Parameters:
@@ -36,16 +37,35 @@ final class CharacterDetailViewModel: ObservableObject {
     func fetchCharacter() async {
         guard state != .loading else { return }
         
+        // Cancel any previous fetch task
+        fetchTask?.cancel()
+        
         state = .loading
         
-        do {
-            for try await character in fetchCharacterDetailUseCase.fetchCharacter(id: characterId) {
-                self.character = character
+        fetchTask = Task {
+            do {
+                for try await character in fetchCharacterDetailUseCase.fetchCharacter(id: characterId) {
+                    // Check if task was cancelled before updating state
+                    if Task.isCancelled { return }
+                    self.character = character
+                }
+                
+                if !Task.isCancelled {
+                    state = .loaded
+                }
+            } catch {
+                // Only update error state if task wasn't cancelled
+                if !Task.isCancelled {
+                    state = .error
+                }
             }
-            state = .loaded
-        } catch {
-            state = .error
         }
+    }
+    
+    /// Cancels any in-progress fetch operation.
+    func cancelFetch() {
+        fetchTask?.cancel()
+        fetchTask = nil
     }
     
     // MARK: - Favorites
@@ -73,5 +93,9 @@ final class CharacterDetailViewModel: ObservableObject {
     /// - Parameter isFavorite: New favorite value to display.
     private func updateFavorite(_ isFavorite: Bool) {
         character = character?.settingFavorite(isFavorite)
+    }
+    
+    deinit {
+        fetchTask?.cancel()
     }
 }

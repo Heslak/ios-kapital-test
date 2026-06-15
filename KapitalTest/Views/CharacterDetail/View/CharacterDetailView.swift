@@ -29,6 +29,10 @@ struct CharacterDetailView: View {
             .task {
                 await fetchCharacter()
             }
+            .onDisappear {
+                // Cancel any in-progress fetch when view disappears
+                viewModel.cancelFetch()
+            }
     }
     
     @ViewBuilder

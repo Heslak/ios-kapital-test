@@ -21,11 +21,19 @@ struct FavoriteCharactersView: View {
     }
     
     var body: some View {
-        contentView
-            .background(.background(.standard))
-            .onAppear {
-                viewModel.fetchFavoriteCharacters()
-            }
+        ZStack {
+            contentView
+        }
+        .background(.background(.standard))
+        .onAppear {
+            viewModel.fetchFavoriteCharacters()
+        }
+        .onDisappear {
+            viewModel.cancelFetch()
+        }
+        .transition(
+            .opacity.animation(.smooth)
+        )
     }
     
     @ViewBuilder

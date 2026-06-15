@@ -49,6 +49,10 @@ struct MainTabView: View {
             .tag(MainTab.favorites)
         }
         .tint(Color(.ink(.favorite)))
+        .onChange(of: selectedTab) { newTab in
+            // Reset navigation to root when switching tabs
+            coordinator.popToRoot()
+        }
     }
 }
 
