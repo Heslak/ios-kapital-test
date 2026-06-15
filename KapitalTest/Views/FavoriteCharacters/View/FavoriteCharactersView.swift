@@ -46,6 +46,7 @@ struct FavoriteCharactersView: View {
                     title: AppStrings.appEyebrow,
                     subtitle: AppStrings.favoritesTitle
                 )
+                .accessibilityIdentifier(AccessibilityIdentifiers.Favorites.screenTitle)
                 
                 ForEach(viewModel.characters, id: \.id) { character in
                     CharacterListCell(
@@ -59,6 +60,7 @@ struct FavoriteCharactersView: View {
             }
             .padding(DSDimens.spacing_5)
         }
+        .accessibilityIdentifier(AccessibilityIdentifiers.Favorites.charactersList)
     }
     
     private func builEmptyView() -> some View {
@@ -68,12 +70,16 @@ struct FavoriteCharactersView: View {
             descriptionTitle: AppStrings.noFavoritesTitle,
             description: AppStrings.noFavoritesDescription
         )
+        .accessibilityIdentifier(AccessibilityIdentifiers.Favorites.emptyView)
+        .accessibilityLabel(AccessibilityLabels.Favorites.emptyState)
     }
     
     private func buildErrorView() -> some View {
         ErrorView {
             await viewModel.fetchFavoriteCharacters()
         }
+        .accessibilityIdentifier(AccessibilityIdentifiers.Favorites.errorView)
+        .accessibilityLabel(AccessibilityLabels.Common.error)
     }
     
     private func toggleFavorite(for character: CharacterInfo) {

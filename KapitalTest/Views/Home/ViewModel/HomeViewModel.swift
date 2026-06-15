@@ -8,15 +8,6 @@
 import Foundation
 import Combine
 
-// MARK: - View State
-
-enum ViewState: Equatable {
-    case shouldLoad
-    case loading
-    case loaded
-    case error
-}
-
 // MARK: - Home View Model
 
 @MainActor

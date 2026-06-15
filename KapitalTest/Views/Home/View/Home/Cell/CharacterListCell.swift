@@ -30,6 +30,10 @@ struct CharacterListCell: View {
             x: 0,
             y: 5
         )
+        .accessibilityIdentifier(AccessibilityIdentifiers.Home.CharacterCell.cell(id: character.id))
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(AccessibilityLabels.Home.characterCell(name: character.name, isFavorite: character.isFavorite))
+        .accessibilityHint(AccessibilityHints.CharacterCell.tap)
     }
     
     @ViewBuilder
@@ -56,6 +60,7 @@ struct CharacterListCell: View {
             imageURL: character.imageUrl,
             placeholderColor: character.placeholderColor
         )
+        .accessibilityIdentifier(AccessibilityIdentifiers.Home.CharacterCell.avatar(id: character.id))
     }
     
     @ViewBuilder
@@ -64,6 +69,7 @@ struct CharacterListCell: View {
             .font(.titleBold)
             .foregroundColor(.ink(.primary))
             .lineLimit(1)
+            .accessibilityIdentifier(AccessibilityIdentifiers.Home.CharacterCell.name(id: character.id))
         
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: DSDimens.spacing_3) {
@@ -72,6 +78,7 @@ struct CharacterListCell: View {
                 }
             }
         }
+        .accessibilityHidden(true)
     }
     
     @ViewBuilder
@@ -82,6 +89,10 @@ struct CharacterListCell: View {
                 favoriteAction(character)
             }
         )
+        .accessibilityIdentifier(AccessibilityIdentifiers.Home.CharacterCell.favoriteButton(id: character.id))
+        .accessibilityLabel(AccessibilityLabels.Home.favoriteButton(name: character.name, isFavorite: character.isFavorite))
+        .accessibilityHint(AccessibilityHints.CharacterCell.favorite)
+        .accessibilityAddTraits(.isButton)
     }
 }
 

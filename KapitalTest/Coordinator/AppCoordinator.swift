@@ -11,12 +11,25 @@ import Combine
 import NetworkService
 import LocalStorageService
 
+// MARK: - Coordinator Protocol
+
+/// Protocol defining navigation capabilities.
+/// Allows creating mock coordinators for testing.
+protocol CoordinatorProtocol: ObservableObject {
+    var path: NavigationPath { get set }
+    
+    func push(_ route: AppRoute)
+    func pop()
+    func popToRoot()
+}
+
 // MARK: - App Coordinator
 
-final class AppCoordinator: ObservableObject {
-    private let networkService: NetworkServiceInterface
-    private let localStorageService: LocalStorageServiceInterface
-    @Published var path = NavigationPath()
+/// Manages navigation state and delegates view creation to the ViewFactory.
+/// Single responsibility: navigation only, view creation is delegated.
+final class AppCoordinator: CoordinatorProtocol {
+    private let viewFactory: AppViewFactory
+    @Published var path: NavigationPath
     
     /// Creates the coordinator with injectable app-wide dependencies.
     /// - Parameters:
@@ -26,11 +39,13 @@ final class AppCoordinator: ObservableObject {
     init(
         networkService: NetworkServiceInterface = NetworkServiceFactory.makeNetworkService(),
         localStorageService: LocalStorageServiceInterface = LocalStorageServiceFactory.makeLocalStorageService(),
-        path: NavigationPath = NavigationPath(),
+        path: NavigationPath = NavigationPath()
     ) {
         self.path = path
-        self.networkService = networkService
-        self.localStorageService = localStorageService
+        self.viewFactory = AppViewFactory(
+            networkService: networkService,
+            localStorageService: localStorageService
+        )
     }
     
     // MARK: - Navigation Actions
@@ -52,26 +67,18 @@ final class AppCoordinator: ObservableObject {
         path = NavigationPath()
     }
     
-    // MARK: - View Factory
+    // MARK: - View Building
     
-    /// Builds the SwiftUI screen for a route and injects the dependencies it needs.
+    /// Builds the SwiftUI screen for a route using the ViewFactory.
     /// - Parameter route: Route requested by navigation.
     @ViewBuilder
     func buildView(for route: AppRoute) -> some View {
         switch route {
         case .home:
-            MainTabViewBuilder.makeMainTabScreen(
-                networkService: networkService,
-                localStorageService: localStorageService,
-                coordinator: self
-            )
+            viewFactory.makeHomeScreen(coordinator: self)
         case .detail(let id):
-            CharacterDetailViewBuilder.makeCharacterDetailScreen(
-                characterId: id,
-                networkService: networkService,
-                localStorageService: localStorageService,
-                coordinator: self
-            )
+            viewFactory.makeDetailScreen(characterId: id, coordinator: self)
         }
     }
 }
+

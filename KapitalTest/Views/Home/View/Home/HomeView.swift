@@ -76,12 +76,16 @@ struct HomeView: View {
     
     private var loadingView: some View {
         LoadingView()
+            .accessibilityIdentifier(AccessibilityIdentifiers.Home.loadingIndicator)
+            .accessibilityLabel(AccessibilityLabels.Common.loading)
     }
     
     private var errorView: some View {
         ErrorView {
             await fetchUsers()
         }
+        .accessibilityIdentifier(AccessibilityIdentifiers.Home.errorView)
+        .accessibilityLabel(AccessibilityLabels.Common.error)
     }
     
     private func fetchUsers() async {
